@@ -36,17 +36,22 @@
         </div>
       </nav>
       <div class="container">
-        <div class="row justify-content-md-center">
-          <div id="carouselcasino" class="carousel slide w-50 col-sm-6">
+        <div class="row justify-content-md-center" data-bs-ride="carousel">
+          <div id="carouselcasino" class="carousel carousel-dark slide w-100 col-sm-6">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselcasino" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselcasino" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselcasino" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="kepek/casino3.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-item active" data-bs-interval="7000">
+                <img src="kepek/casino3.jpg" class="d-block img-fluid mx-auto" alt="...">
               </div>
-              <div class="carousel-item">
-                <img src="kepek/casino2.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-item" data-bs-interval="7000">
+                <img src="kepek/casino2.png" class="d-block img-fluid mx-auto" alt="...">
               </div>
-              <div class="carousel-item">
-                <img src="kepek/casino1.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-item" data-bs-interval="7000">
+                <img src="kepek/casino1.jpg" class="d-block img-fluid mx-auto" alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselcasino" data-bs-slide="prev">
