@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fortuna Casino</title>
+    <title>Fortuna Casino | Nyitvatartás</title>
   </head>
   <body>
     <div id="app">
@@ -37,9 +37,10 @@
       </nav>
     </div>
     <div class="container">
-      <div class="card">
+      <div class="card my-2">
         <div class="card-header">
           <h2>Nyitvatartás</h2>
+          <p id="ma"></p>
         </div>
         <div class="card-body">
           <table class="table">
@@ -91,5 +92,51 @@
     </div>
   </div>
     <script type="module" src="/main.js"></script>
+    <script>
+      let egesznap;
+      let unnep = ["01-01","03-15","05-01","08-20","10-23","11-01","12-25","12-26"];
+      let napok = ["vasárnap", "hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat"];
+      let ma = new Date();
+      let nap = ma.getDay();
+      let ora = ma.getHours();
+      let nyitva = [[15,22],[16,2],[16,2],[16,2],[16,2],[16,5],[16,5]];
+      let s = "";
+      egesznap = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0];
+      if (nyitva[nap][1] < nyitva[nap][0]) {
+        for (let i = nyitva[nap][0]; i < 24; i++) {
+          egesznap[i] = 1;
+        }  
+      }
+      else {
+        for (let i = nyitva[nap][0]; i < nyitva[nap][1]; i++) {
+          egesznap[i] = 1;
+        }
+      }
+      if (nap >=1 && nap <=6) {
+        if (nyitva[nap-1][1] < nyitva[nap-1][0]) {
+          for (let i = 0; i < nyitva[nap-1][1]; i++) {
+            egesznap[i] = 1;
+          }
+        }
+      }
+      else if (nap == 0) {
+        if (nyitva[6][1] < nyitva[6][0]) {
+          for (let i = 0; i < nyitva[6][1]; i++) {
+            egesznap[i] = 1;
+          }
+        }
+      }
+    
+      if (egesznap[ora] == 1) {
+        while (ora<24 && egesznap[ora] == 1) ora++;
+        s = "<b>nyitva,</b> zárás: " + (ora<24?ora:"holnap " + nyitva[(nap+1)%7][1]) + " órakor";
+      }
+      else {
+        while (ora<24 && egesznap[ora] == 0) ora++;
+        s = "<b>zárva,</b> nyitás: " + (ora<24?ora:"holnap " + nyitva[(nap+1)%7][0]) + " órakor";
+      }
+
+      document.getElementById("ma").innerHTML = `ma ${napok[nap]} van, most ${s}`;
+    </script>
   </body>
 </html>
